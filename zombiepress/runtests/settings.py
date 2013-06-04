@@ -62,9 +62,7 @@ ROOT_URLCONF = 'zombiepress.urls'
 
 WSGI_APPLICATION = 'zombiepress.wsgi.application'
 
-TEMPLATE_DIRS = (
-    '%s/themes/' % BASE_DIR,
-)
+TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
     'django.contrib.auth',
