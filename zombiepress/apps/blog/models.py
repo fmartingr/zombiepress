@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django import forms
 from django.contrib.auth.models import User
+from datetime import datetime
+from django.utils.timezone import utc
 
 
 ###
@@ -15,7 +17,7 @@ class Entry(models.Model):
         default='en'
     )
     title = models.CharField(max_length=128)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=datetime.now(tz=utc))
     content = models.TextField()
     slug = models.SlugField(max_length=128)
     draft = models.BooleanField(default=True)
@@ -25,6 +27,19 @@ class Entry(models.Model):
         related_name='author'
     )
 
+    def __unicode__(self):
+        return self.title
+
+    def status(self):
+        status = 'Published'
+        if self.draft:
+            status = 'Draft'
+
+        if self.date > datetime.now(tz=utc):
+            status = 'Scheduled'
+
+        return status
+
     class Meta:
         app_label = 'blog'
         ordering = ['-date']
@@ -32,7 +47,7 @@ class Entry(models.Model):
 
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'draft')
+    list_display = ('title', 'date', 'status', )
     list_display_links = ('title', )
 
     list_filter = ('date', )
