@@ -1,9 +1,19 @@
 <html>
 <head>
-    <title>{% block page_title %}{% endblock %}</title>
+    <title>{% block page_title %}Zombiepress{% endblock %}</title>
 </head>
 <body>
-    {% block content %}
+    <h1>Zombiepress</h1>
+    {% block menu %}
+    <h2>Menu</h2>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </ul>
+    </nav>
     {% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>
