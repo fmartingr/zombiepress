@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     #url(r'^/', include('zombiepress.projects.urls')),
 
     # Blog
-    url(r'^blog/', include('zombiepress.blog.urls')),
+    url(r'^blog/', include('zombiepress.apps.blog.urls')),
 )

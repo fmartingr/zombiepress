@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 
-urlpatterns = patterns('blog.views',
+urlpatterns = patterns('zombiepress.apps.blog.views',
     # Post list
     url(
         r'^$',

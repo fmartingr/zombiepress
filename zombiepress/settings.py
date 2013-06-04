@@ -84,7 +84,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'grappelli',
     'south',
-    'blog',
+    'zombiepress.apps.blog',
 )
 
 ##
