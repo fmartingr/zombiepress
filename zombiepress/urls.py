@@ -1,8 +1,13 @@
 from django.conf.urls import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from zombiepress.utils import set_current_theme
+
+# Setting admin
 admin.autodiscover()
+
+# Set current theme path
+set_current_theme()
+
 
 urlpatterns = patterns('',
     # Grappelli
