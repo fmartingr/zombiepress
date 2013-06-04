@@ -12,3 +12,10 @@ def set_current_theme():
             theme
         ),
     )
+
+    settings.STATICFILES_DIRS += (
+        '%s/themes/%s/static' % (
+            settings.BASE_PATH,
+            theme
+        ),
+    )
