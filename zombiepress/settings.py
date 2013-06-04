@@ -27,7 +27,7 @@ SITE_ID = 1
 
 LANGUAGES = (
     ('en', gettext('English')),
-    ('es', gettext('Spanish')),
+    #('es', gettext('Spanish')),
 )
 
 USE_I18N = True
