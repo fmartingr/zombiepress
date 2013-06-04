@@ -110,6 +110,8 @@ if 'SENTRY_DSN' in environ:
         'raven.contrib.django.raven_compat',
     )
 
+GRAPPELLI_ADMIN_TITLE = 'Zombiepress'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
