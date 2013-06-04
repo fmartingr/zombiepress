@@ -1,7 +1,16 @@
+# Common
 *.log
 *.pot
 *.pyc
-local_settings.py
+
+# Development
 ddbb.sqlite*
+
+# Tests
 .tox/
+
+# Distutils
 MANIFEST
+
+# Docs
+docs/_build
