@@ -10,8 +10,8 @@ ADMINS = (
     #('Your Name', 'your_email@example.com'),
 )
 
-#TOP_DIR = path.normpath(path.join(path.dirname(__file__), '../../'))
-BASE_DIR = path.normpath(path.join(path.dirname(__file__), '../'))
+#TOP_PATH = path.normpath(path.join(path.dirname(__file__), '../../'))
+BASE_PATH = path.normpath(path.dirname(__file__))
 
 MANAGERS = ADMINS
 
@@ -34,10 +34,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-MEDIA_ROOT = environ.get('MEDIA_ROOT', path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = environ.get('MEDIA_ROOT', path.join(BASE_PATH, 'media'))
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = environ.get('STATIC_ROOT', path.join(BASE_DIR, 'static'))
+STATIC_ROOT = environ.get('STATIC_ROOT', path.join(BASE_PATH, 'static'))
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
@@ -70,8 +70,7 @@ ROOT_URLCONF = 'zombiepress.urls'
 
 WSGI_APPLICATION = 'zombiepress.wsgi.application'
 
-TEMPLATE_DIRS = (
-)
+TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
     'django.contrib.auth',
