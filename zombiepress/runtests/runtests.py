@@ -14,7 +14,11 @@ def main():
     TestRunner = get_runner(settings)
 
     test_runner = TestRunner()
-    failures = test_runner.run_tests([], verbosity=1)
+    failures = test_runner.run_tests(
+        [],
+        verbosity=9,
+        interactive=False
+    )
 
     sys.exit(failures)
 
