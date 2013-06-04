@@ -63,6 +63,7 @@ ROOT_URLCONF = 'zombiepress.urls'
 WSGI_APPLICATION = 'zombiepress.wsgi.application'
 
 TEMPLATE_DIRS = (
+    '%s/themes/' % BASE_DIR,
 )
 
 INSTALLED_APPS = (
