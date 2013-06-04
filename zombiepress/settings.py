@@ -1,6 +1,8 @@
 from os import environ, path
 
 
+gettext = lambda s: s
+
 DEBUG = bool(environ.get('DEBUG', False))
 TEMPLATE_DEBUG = DEBUG
 
@@ -22,6 +24,11 @@ TIME_ZONE = environ.get('TIME_ZONE', 'Europe/Madrid')
 LANGUAGE_CODE = environ.get('LANGUAGE_CODE', 'en-us')
 
 SITE_ID = 1
+
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('es', gettext('Spanish')),
+)
 
 USE_I18N = True
 USE_L10N = True
@@ -77,6 +84,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'grappelli',
     'south',
+    'blog',
 )
 
 ##
@@ -87,9 +95,7 @@ INSTALLED_APPS = (
 if 'DATABASE_URL' in environ:
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
-
-# Development database
-if 'DATABASE_DEV' in environ:
+else:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'ddbb.sqlite3',

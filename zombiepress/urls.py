@@ -10,5 +10,12 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # url(r'^zombiepress/', include('zombiepress.foo.urls')),
+    # Homepage
+    # url(r'$', include('homepage.urls'), name='homepage'),
+
+    # Projects
+    #url(r'^/', include('zombiepress.projects.urls')),
+
+    # Blog
+    url(r'^blog/', include('zombiepress.blog.urls')),
 )
