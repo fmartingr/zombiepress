@@ -9,6 +9,10 @@ if settings.MULTILANGUAGE:
         'zombiepress.apps.languages.middleware.LanguageURLMiddleware',
     ) + settings.MIDDLEWARE_CLASSES
 
+    # Adding context processors
+    settings.TEMPLATE_CONTEXT_PROCESSORS += (
+        'zombiepress.apps.languages.context.languages_list',
+    )
 
     # Setting languages
     languages = Language.objects.all()
