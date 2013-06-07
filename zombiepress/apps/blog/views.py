@@ -1,7 +1,6 @@
 #from zombiepress.utils import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils import translation
 
 
 def list(request):
