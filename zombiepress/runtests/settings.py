@@ -19,13 +19,15 @@ ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', '').split(',')
 
 TIME_ZONE = environ.get('TIME_ZONE', 'Europe/Madrid')
 
-LANGUAGE_CODE = environ.get('LANGUAGE_CODE', 'en-us')
+LANGUAGE_CODE = environ.get('LANGUAGE_CODE', 'en')
 
 SITE_ID = 1
 
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+MULTILANGUAGE = True
 
 MEDIA_ROOT = environ.get('MEDIA_ROOT', path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
@@ -37,6 +39,7 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_FINDERS = (
+    'jingo.Loader',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
@@ -75,9 +78,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'grappelli',
     'south',
-    'zombiepress.apps.blog'
+    'zombiepress.apps.languages',
+    'zombiepress.apps.blog',
 )
-
 
 ##
 #   TESTING ONLY
