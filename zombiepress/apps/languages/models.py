@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib import admin, messages
 
@@ -8,9 +9,9 @@ def set_default_language(modeladmin, request, queryset):
     else:
         item = queryset[0]
         item.set_default()
-        messages.info(
+        messages.success(
             request,
-            'Language %s is now the default one.' % item.name
+            '%s is now the default language.' % item.name
         )
 
 set_default_language.short_description = 'Set selected language as default'
@@ -37,4 +38,5 @@ class LanguageAdmin(admin.ModelAdmin):
         set_default_language,
     ]
 
-admin.site.register(Language, LanguageAdmin)
+if settings.MULTILANGUAGE:
+    admin.site.register(Language, LanguageAdmin)

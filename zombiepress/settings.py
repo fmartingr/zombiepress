@@ -30,7 +30,7 @@ LANGUAGES = []
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-MULTILANGUAGE = environ.get('MULTILANGUAGE', True)
+MULTILANGUAGE = environ.get('MULTILANGUAGE', False)
 
 MEDIA_ROOT = environ.get('MEDIA_ROOT', path.join(BASE_PATH, 'media'))
 MEDIA_URL = '/media/'
@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     'south',
+    'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )
 
@@ -107,13 +108,6 @@ if 'SENTRY_DSN' in environ:
     INSTALLED_APPS += (
         'raven.contrib.django.raven_compat',
     )
-
-# Multilanguage site
-if MULTILANGUAGE:
-    INSTALLED_APPS += (
-        'zombiepress.apps.languages',
-    )
-
 
 GRAPPELLI_ADMIN_TITLE = 'Zombiepress'
 

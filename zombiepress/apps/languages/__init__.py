@@ -3,14 +3,15 @@ from django.conf import settings
 from zombiepress.apps.languages.models import Language
 
 
-# Adding middlewares
-settings.MIDDLEWARE_CLASSES = (
-    'zombiepress.apps.languages.middleware.LanguageURLMiddleware',
-) + settings.MIDDLEWARE_CLASSES
+if settings.MULTILANGUAGE:
+    # Adding middlewares
+    settings.MIDDLEWARE_CLASSES = (
+        'zombiepress.apps.languages.middleware.LanguageURLMiddleware',
+    ) + settings.MIDDLEWARE_CLASSES
 
 
-# Setting languages
-languages = Language.objects.all()
-settings.LANGUAGES = []
-for language in languages:
-    settings.LANGUAGES.append((language.code, language.name))
+    # Setting languages
+    languages = Language.objects.all()
+    settings.LANGUAGES = []
+    for language in languages:
+        settings.LANGUAGES.append((language.code, language.name))

@@ -5,12 +5,19 @@ from django import forms
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.timezone import utc
+from zombiepress.apps.languages.models import Language
 
 
 ###
 #   ENTRY
 ###
 class Entry(models.Model):
+    language = models.ForeignKey(
+        Language,
+        blank=True,
+        null=True,
+        editable=settings.MULTILANGUAGE
+    )
     title = models.CharField(max_length=128)
     date = models.DateTimeField(default=datetime.now(tz=utc))
     content = models.TextField()
