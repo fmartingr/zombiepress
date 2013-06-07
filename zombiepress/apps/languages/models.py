@@ -17,7 +17,7 @@ set_default_language.short_description = 'Set selected language as default'
 
 
 class Language(models.Model):
-    code = models.CharField(max_length=2)
+    code = models.CharField(max_length=2, db_index=True, unique=True)
     name = models.CharField(max_length=40)
     default = models.BooleanField(default=False, editable=False)
 
