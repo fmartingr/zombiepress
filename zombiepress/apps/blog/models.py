@@ -11,11 +11,6 @@ from django.utils.timezone import utc
 #   ENTRY
 ###
 class Entry(models.Model):
-    language = models.CharField(
-        max_length=2,
-        choices=settings.LANGUAGES,
-        default='en'
-    )
     title = models.CharField(max_length=128)
     date = models.DateTimeField(default=datetime.now(tz=utc))
     content = models.TextField()
