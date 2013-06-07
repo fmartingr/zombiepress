@@ -11,6 +11,9 @@
             <li><a href="/">Home</a></li>
             <li><a href="/blog">Blog</a></li>
             <li><a href="/projects">Projects</a></li>
+            {% for language in languages %}
+            <li>{{ "{0}"|f(language) }}</li>
+            {% endfor %}
         </ul>
     </nav>
     {% endblock %}
