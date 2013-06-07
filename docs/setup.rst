@@ -64,3 +64,8 @@ ZOMBIEPRESS_THEME
 -----------------
 
 **Default:** default
+
+MULTILANGUAGE
+-------------
+
+**Default:** False

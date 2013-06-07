@@ -21,18 +21,16 @@ ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', '').split(',')
 
 TIME_ZONE = environ.get('TIME_ZONE', 'Europe/Madrid')
 
-LANGUAGE_CODE = environ.get('LANGUAGE_CODE', 'en-us')
+LANGUAGE_CODE = environ.get('LANGUAGE_CODE', 'en')
 
 SITE_ID = 1
 
-LANGUAGES = (
-    ('en', gettext('English')),
-    #('es', gettext('Spanish')),
-)
+LANGUAGES = []
 
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+MULTILANGUAGE = environ.get('MULTILANGUAGE', True)
 
 MEDIA_ROOT = environ.get('MEDIA_ROOT', path.join(BASE_PATH, 'media'))
 MEDIA_URL = '/media/'
@@ -46,7 +44,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 SECRET_KEY = environ.get('SECRET_KEY', '1234567890')
@@ -54,7 +52,7 @@ SECRET_KEY = environ.get('SECRET_KEY', '1234567890')
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,7 +91,7 @@ INSTALLED_APPS = (
 # Production database
 if 'DATABASE_URL' in environ:
     import dj_database_url
-    DATABASES['default'] =  dj_database_url.config()
+    DATABASES['default'] = dj_database_url.config()
 else:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -109,6 +107,13 @@ if 'SENTRY_DSN' in environ:
     INSTALLED_APPS += (
         'raven.contrib.django.raven_compat',
     )
+
+# Multilanguage site
+if MULTILANGUAGE:
+    INSTALLED_APPS += (
+        'zombiepress.apps.languages',
+    )
+
 
 GRAPPELLI_ADMIN_TITLE = 'Zombiepress'
 
