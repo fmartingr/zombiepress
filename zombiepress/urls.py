@@ -9,7 +9,8 @@ admin.autodiscover()
 set_current_theme()
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Grappelli
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
@@ -23,4 +24,7 @@ urlpatterns = patterns('',
 
     # Blog
     url(r'^blog/', include('zombiepress.apps.blog.urls')),
+
+    # Home
+    url(r'^$', include('zombiepress.apps.homepage.urls')),
 )
