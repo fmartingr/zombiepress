@@ -68,5 +68,14 @@ class EntryAdmin(admin.ModelAdmin):
             obj.author = request.user
         super(self.__class__, self).save_model(request, obj, form, change)
 
+    class Media:
+        #css = {
+        #    "all": ("ckeditor/redactor.css",)
+        #}
+        js = (
+            "ckeditor/ckeditor.js",
+            "js/wysiwyg.js",
+        )
+
 
 admin.site.register(Entry, EntryAdmin)

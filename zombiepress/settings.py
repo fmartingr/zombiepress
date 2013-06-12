@@ -39,6 +39,7 @@ STATIC_ROOT = environ.get('STATIC_ROOT', path.join(BASE_PATH, 'static'))
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
+    path.join(BASE_PATH, 'staticfiles'),
 )
 
 STATICFILES_FINDERS = (
