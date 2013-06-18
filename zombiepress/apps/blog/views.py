@@ -8,7 +8,6 @@ section = 'blog'
 
 
 def list(request):
-
     if request.user.is_authenticated():
         items = Entry.objects.all()
     else:
@@ -33,4 +32,24 @@ def list(request):
 
 
 def entry(request, year, month, day, slug):
-    return render_to_response('blog/entry.jinja2')
+    if request.user.is_authenticated():
+        item = Entry.objects.get(
+            slug=slug,
+            date__year=int(year),
+            date__month=int(month),
+            date__day=int(day)
+        )
+    else:
+        item = Entry.objects.get(
+            slug=slug,
+            date__year=int(year),
+            date__month=int(month),
+            date__day=int(day),
+            draft=False
+        )
+
+    data = {
+        'item': item
+    }
+    context = RequestContext(request, data)
+    return render_to_response('blog/entry.jinja2', context_instance=context)
