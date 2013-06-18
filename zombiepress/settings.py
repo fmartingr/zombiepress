@@ -39,6 +39,7 @@ STATIC_ROOT = environ.get('STATIC_ROOT', path.join(BASE_PATH, 'static'))
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
+    path.join(BASE_PATH, 'staticfiles'),
 )
 
 STATICFILES_FINDERS = (
@@ -71,6 +72,17 @@ WSGI_APPLICATION = 'zombiepress.wsgi.application'
 
 TEMPLATE_DIRS = ()
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "zombiepress.apps.config.context.preferences",
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     'south',
+    'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )
@@ -111,6 +124,9 @@ if 'SENTRY_DSN' in environ:
     )
 
 GRAPPELLI_ADMIN_TITLE = 'Zombiepress'
+
+# Disqus
+DISQUS_SHORTNAME = 'fmartingr'
 
 LOGGING = {
     'version': 1,
