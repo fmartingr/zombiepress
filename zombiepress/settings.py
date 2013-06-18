@@ -80,7 +80,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    "zombiepress.context.config",
+    "zombiepress.apps.config.context.preferences",
 )
 
 INSTALLED_APPS = (
@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     'south',
+    'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )

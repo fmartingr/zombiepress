@@ -26,6 +26,11 @@ DEBUG
 
 **Default:** False
 
+MULTILANGUAGE
+-------------
+
+**Default:** False
+
 TIME_ZONE
 ---------
 
@@ -69,3 +74,10 @@ MULTILANGUAGE
 -------------
 
 **Default:** False
+
+
+==================
+In-app preferences
+==================
+
+Zombiepress can use some in-app preferences via the admin. These are some key-value managed strings that can be passed onto templates.
