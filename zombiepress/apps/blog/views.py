@@ -1,20 +1,21 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
+
+from zombiepress.apps.config.models import Preference
 from zombiepress.apps.blog.models import Entry
 
 
 section = 'blog'
 
 
-def list(request):
+def list(request, page_number=1):
     if request.user.is_authenticated():
         items = Entry.objects.all()
     else:
         items = Entry.objects.filter(draft=False)
 
-    paginator = Paginator(items, 4)
-    page_number = 1
+    paginator = Paginator(items, Preference.get('ENTRIES_PER_PAGE', 4))
 
     if 'page' in request.GET:
         page_number = int(request.GET['page'])
@@ -52,4 +53,21 @@ def entry(request, year, month, day, slug):
         'item': item
     }
     context = RequestContext(request, data)
-    return render_to_response('blog/entry.jinja2', context_instance=context)
+    return render_to_response(
+        'blog/entry.jinja2',
+        context_instance=context
+    )
+
+
+def rss(request):
+    limit = Preference.get('RSS_ITEMS', 10)
+    items = Entry.objects.all().order_by('-date')[:limit]
+    data = {
+        'items': items
+    }
+    context = RequestContext(request, data)
+    return render_to_response(
+        'blog/rss.jinja2',
+        context_instance=context,
+        mimetype='text/xml'
+    )

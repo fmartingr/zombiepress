@@ -26,9 +26,14 @@ class Preference(models.Model):
         return config
 
     @staticmethod
-    def get(key):
-        preference = Preference.objects.get(key=key)
-        return preference.value
+    def get(key, default_value=None):
+        value = default_value
+        try:
+            preference = Preference.objects.get(key=key)
+            value = preference.value
+        except Preference.DoesNotExist:
+            pass
+        return value
 
 
 class PreferenceAdmin(admin.ModelAdmin):
