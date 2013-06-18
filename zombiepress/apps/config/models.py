@@ -11,6 +11,25 @@ class Preference(models.Model):
         "as part of the _config_ global template variable"
     )
 
+    @staticmethod
+    def get_config(**kwargs):
+        if kwargs:
+            preferences = Preference.objects.filter(**kwargs)
+        else:
+            preferences = Preference.objects.all()
+
+        config = {}
+
+        for item in preferences:
+            config[item.key] = item.value
+
+        return config
+
+    @staticmethod
+    def get(key):
+        preference = Preference.objects.get(key=key)
+        return preference.value
+
 
 class PreferenceAdmin(admin.ModelAdmin):
     list_display = ('key', 'value', 'pass_to_template', )
