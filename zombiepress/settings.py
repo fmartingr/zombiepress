@@ -1,4 +1,5 @@
 from os import environ, path
+from zombiepress.utils import set_current_theme
 
 
 gettext = lambda s: s
@@ -151,3 +152,8 @@ LOGGING = {
         },
     }
 }
+
+# Do not touch after this line
+
+# Sets the current theme paths
+set_current_theme()

@@ -6,3 +6,4 @@ raven==3.3.7
 jingo==0.6.1
 pytz==2013b
 psycopg2==2.5
+gunicorn==0.17.4
