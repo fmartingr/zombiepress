@@ -5,3 +5,4 @@ django-grappelli==2.4.5
 raven==3.3.7
 jingo==0.6.1
 pytz==2013b
+psycopg2==2.5
