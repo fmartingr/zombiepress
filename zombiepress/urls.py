@@ -1,8 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from zombiepress.utils import set_current_theme
 
 # Setting admin
 admin.autodiscover()
+
+set_current_theme()
 
 urlpatterns = patterns(
     '',

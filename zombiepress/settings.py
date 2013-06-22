@@ -1,5 +1,4 @@
 from os import environ, path
-from zombiepress.utils import set_current_theme
 
 
 gettext = lambda s: s
@@ -46,6 +45,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'zombiepress.utils.ThemeFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -152,8 +152,3 @@ LOGGING = {
         },
     }
 }
-
-# Do not touch after this line
-
-# Sets the current theme paths
-set_current_theme()
