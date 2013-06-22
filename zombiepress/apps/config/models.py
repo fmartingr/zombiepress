@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 class Preference(models.Model):
-    key = models.CharField(max_length=40)
+    key = models.CharField(max_length=40, unique=True, db_index=True)
     value = models.CharField(max_length=256)
     pass_to_template = models.BooleanField(
         default=False,
