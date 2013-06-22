@@ -13,7 +13,8 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'styles', items: [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'Code' ] },
         '/',
-        { name: 'styles', items: [ 'Styles', 'Format', 'Anchor' ] },
+        { name: 'styles', items: [ 'Styles', 'Format', 'Link', 'Anchor' ] },
+        { name: 'text', items: [ 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ]},
         { name: 'documents', items: ['Image', 'Table'] }
     ];
     config.toolbarCanCollapse = true;
