@@ -1,8 +1,8 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.paginator import Paginator
 
 from zombiepress.apps.config.models import Preference
+from zombiepress.apps.blog import utils as blog_utils
 from zombiepress.apps.blog.models import Entry
 
 
@@ -10,17 +10,10 @@ section = 'blog'
 
 
 def list(request, page_number=1):
-    if request.user.is_authenticated():
-        items = Entry.objects.all()
-    else:
-        items = Entry.objects.filter(draft=False)
-
-    paginator = Paginator(items, Preference.get('ENTRIES_PER_PAGE', 4))
-
     if 'page' in request.GET:
         page_number = int(request.GET['page'])
 
-    page = paginator.page(page_number)
+    paginator, page = blog_utils.get_paginator(request, page_number)
 
     data = {
         'section': section,
@@ -49,7 +42,12 @@ def entry(request, year, month, day, slug):
             draft=False
         )
 
+    paginator, page = blog_utils.get_paginator(request, item=item)
+
     data = {
+        'paginator': paginator,
+        'page': page,
+        'section': section,
         'item': item
     }
     context = RequestContext(request, data)
