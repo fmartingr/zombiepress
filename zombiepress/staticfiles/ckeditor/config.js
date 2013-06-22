@@ -7,13 +7,14 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+    config.extraPlugins = 'readmore';
     config.toolbar = [
         { name: 'tools', items: [ 'Source', '-', 'Maximize' ]},
         { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
         { name: 'styles', items: [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'Code' ] },
         '/',
-        { name: 'styles', items: [ 'Styles', 'Format', 'Link', 'Anchor' ] },
+        { name: 'styles', items: [ 'Styles', 'Format', 'Link', 'Anchor', 'ReadMore' ] },
         { name: 'text', items: [ 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ]},
         { name: 'documents', items: ['Image', 'Table'] }
     ];
