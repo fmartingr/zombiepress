@@ -59,7 +59,7 @@ def entry(request, year, month, day, slug):
 
 def rss(request):
     limit = Preference.get('RSS_ITEMS', 10)
-    items = Entry.objects.all().order_by('-date')[:limit]
+    items = Entry.objects.filter(draft=False).order_by('-date')[:limit]
     data = {
         'items': items
     }
