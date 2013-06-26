@@ -23,7 +23,7 @@ urlpatterns = patterns(
     ),
     # RSS
     url(
-        r'^rss/',
+        r'^rss\.xml$',
         'rss',
         name='rss'
     )
