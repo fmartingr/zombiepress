@@ -94,12 +94,16 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
-    'stampu',
     'south',
     'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )
+
+if DEBUG:
+    INSTALLED_APPS += (
+        'stampu',
+    )
 
 ##
 #   CONFIG
