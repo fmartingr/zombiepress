@@ -14,3 +14,6 @@ MANIFEST
 
 # Docs
 docs/_build
+
+# Static test
+/_static

@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
+    'stampu',
     'south',
     'zombiepress.apps.config',
     'zombiepress.apps.languages',
