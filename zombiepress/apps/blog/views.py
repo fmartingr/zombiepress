@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import Http404
+from datetime import datetime
 
 from zombiepress.apps.config.models import Preference
 from zombiepress.apps.blog import utils as blog_utils
@@ -26,21 +28,17 @@ def list(request, page_number=1):
 
 
 def entry(request, year, month, day, slug):
-    if request.user.is_authenticated():
-        item = Entry.objects.get(
-            slug=slug,
-            date__year=int(year),
-            date__month=int(month),
-            date__day=int(day)
-        )
-    else:
+    try:
         item = Entry.objects.get(
             slug=slug,
             date__year=int(year),
             date__month=int(month),
             date__day=int(day),
-            draft=False
+            draft=False,
+            date__lt=datetime.now()
         )
+    except Entry.DoesNotExist:
+        raise Http404
 
     paginator, page = blog_utils.get_paginator(request, item=item)
 
@@ -59,7 +57,7 @@ def entry(request, year, month, day, slug):
 
 def rss(request):
     limit = Preference.get('RSS_ITEMS', 10)
-    items = Entry.objects.filter(draft=False).order_by('-date')[:limit]
+    items = blog_utils.get_posts(limit)
     data = {
         'items': items
     }
