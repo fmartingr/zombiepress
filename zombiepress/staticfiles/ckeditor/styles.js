@@ -59,7 +59,8 @@ CKEDITOR.stylesSet.add( 'default', [
 
 	//{ name: 'Marker',			element: 'span', attributes: { 'class': 'marker' } },
 	{ name: 'Code',				element: 'code', attributes: {  } },
-	{ name: 'Prettyprint',		element: 'pre', attributes: { 'class': 'prettyprint' } }
+	{ name: 'Prettyprint - Auto',		element: 'pre', attributes: { 'class': 'prettyprint' } },
+	{ name: 'Prettyprint - Bash',		element: 'pre', attributes: { 'class': 'prettyprint lang-bash' } }
 /*
 	{ name: 'Big',				element: 'big' },
 	{ name: 'Small',			element: 'small' },
