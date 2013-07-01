@@ -34,8 +34,8 @@ def entry(request, year, month, day, slug):
             date__year=int(year),
             date__month=int(month),
             date__day=int(day),
-            draft=False,
-            date__lt=datetime.now()
+            #draft=False,
+            #date__lt=datetime.now()
         )
     except Entry.DoesNotExist:
         raise Http404
@@ -46,7 +46,7 @@ def entry(request, year, month, day, slug):
         'paginator': paginator,
         'page': page,
         'section': section,
-        'item': item
+        'item': item,
     }
     context = RequestContext(request, data)
     return render_to_response(

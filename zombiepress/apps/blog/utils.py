@@ -9,15 +9,16 @@ def get_posts(limit=None):
         draft=False,
         date__lt=datetime.now()
     ).order_by('-date')
-        
+
     if limit:
         items = items[:limit]
-
 
     return items
 
 
 def get_paginator(request, page_number=1, item=None):
+    item_index = None
+    page = None
     items = get_posts()
     entries_per_page = Preference.get('ENTRIES_PER_PAGE', 4)
     paginator = Paginator(items, entries_per_page)
@@ -26,7 +27,10 @@ def get_paginator(request, page_number=1, item=None):
             if obj == item:
                 item_index = index
                 break
-        page_number = (item_index / entries_per_page) + 1
-    page = paginator.page(page_number)
+        if item_index:
+            page_number = (item_index / entries_per_page) + 1
+
+    if page_number:
+        page = paginator.page(page_number)
 
     return paginator, page

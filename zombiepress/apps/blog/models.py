@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.timezone import utc
+from django.core.urlresolvers import reverse
 from zombiepress.apps.languages.models import Language
 
 
@@ -34,11 +35,12 @@ class Entry(models.Model):
 
     def status(self):
         status = 'Published'
-        if self.draft:
-            status = 'Draft'
 
         if self.date > datetime.now(tz=utc):
             status = 'Scheduled'
+
+        if self.draft:
+            status = 'Draft'
 
         return status
 
@@ -49,7 +51,7 @@ class Entry(models.Model):
 
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'status', )
+    list_display = ('title', 'date', 'status', 'preview_link')
     list_display_links = ('title', )
 
     list_filter = ('date', )
@@ -62,6 +64,20 @@ class EntryAdmin(admin.ModelAdmin):
             'widget': forms.Textarea(attrs={'class': 'wysiwyg'})
         },
     }
+
+    def preview_link(self, obj):
+        return '<a href="%s">View &raquo;</a>' % (
+            reverse(
+                'blog_item',
+                args=(
+                    obj.date.year,
+                    obj.date.month,
+                    obj.date.day,
+                    obj.slug
+                )
+            )
+        )
+    preview_link.allow_tags = True
 
     def save_model(self, request, obj, form, change):
         if not change:
