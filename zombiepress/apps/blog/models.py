@@ -44,6 +44,19 @@ class Entry(models.Model):
 
         return status
 
+    @models.permalink
+    def get_absolute_url(self):
+        return (
+            'blog_item',
+            None,
+            {
+                'year': self.date.year,
+                'month': self.date.strftime("%m"),
+                'day': self.date.strftime("%d"),
+                'slug': self.slug
+            }
+        )
+
     class Meta:
         app_label = 'blog'
         ordering = ['-date']
