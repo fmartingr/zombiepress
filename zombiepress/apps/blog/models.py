@@ -80,15 +80,7 @@ class EntryAdmin(admin.ModelAdmin):
 
     def preview_link(self, obj):
         return '<a href="%s">View &raquo;</a>' % (
-            reverse(
-                'blog_item',
-                args=(
-                    obj.date.year,
-                    obj.date.month,
-                    obj.date.day,
-                    obj.slug
-                )
-            )
+            obj.get_absolute_url()
         )
     preview_link.allow_tags = True
 
