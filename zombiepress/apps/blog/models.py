@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse
+from django.utils.translation import activate
+from zombiepress.apps.languages.utils import get_active_language
 from zombiepress.apps.languages.models import Language
 
 
@@ -44,18 +46,23 @@ class Entry(models.Model):
 
         return status
 
-    @models.permalink
     def get_absolute_url(self):
-        return (
-            'blog_item',
-            None,
-            {
-                'year': self.date.year,
-                'month': self.date.strftime("%m"),
-                'day': self.date.strftime("%d"),
-                'slug': self.slug
-            }
-        )
+        kwargs = {
+            'year': self.date.year,
+            'month': self.date.strftime("%m"),
+            'day': self.date.strftime("%d"),
+            'slug': self.slug
+        }
+        if settings.MULTILANGUAGE:
+            # TODO FIX THIS SHIAT
+            # Doing this cuz import from helpers was failing
+            language = get_active_language()
+            locale = language.code
+            url = "/%s%s" % (locale, reverse('blog_item', kwargs=kwargs))
+        else:
+            url = reverse('blog_item', kwargs=kwargs)
+
+        return url
 
     class Meta:
         app_label = 'blog'
