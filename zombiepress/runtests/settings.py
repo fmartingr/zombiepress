@@ -39,7 +39,6 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_FINDERS = (
-    'jingo.Loader',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
@@ -47,9 +46,8 @@ STATICFILES_FINDERS = (
 SECRET_KEY = environ.get('SECRET_KEY', '1234567890')
 
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django_jinja.loaders.AppLoader',
+    'django_jinja.loaders.FileSystemLoader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,6 +76,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'grappelli',
     'south',
+    'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )

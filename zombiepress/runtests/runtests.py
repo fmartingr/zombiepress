@@ -8,10 +8,14 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'zombiepress.runtests.settings'
 
 from django.conf import settings
 from django.test.utils import get_runner
+from django.core.management import call_command
 
 
 def main():
     TestRunner = get_runner(settings)
+
+    call_command('syncdb', interactive=False)
+    call_command('migrate', interactive=False)
 
     test_runner = TestRunner()
     failures = test_runner.run_tests(
