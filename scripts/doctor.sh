@@ -26,7 +26,7 @@ echo "=> Installing requirements"
 pip install -q -r requirements.txt
 
 echo -n "=> Checking for outdated requirements: "
-RESULT=`pip list -o`
+RESULT=`pip list -o -l`
 
 if [ "${RESULT}" != "" ]
 then
