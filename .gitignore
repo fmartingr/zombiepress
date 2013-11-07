@@ -17,3 +17,6 @@ docs/_build
 
 # Static test
 /_static
+
+# Virtualenvs
+.virtualenv/

@@ -52,10 +52,11 @@ STATICFILES_FINDERS = (
 SECRET_KEY = environ.get('SECRET_KEY', '1234567890')
 
 TEMPLATE_LOADERS = (
-    'jingo.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    #'django.template.loaders.eggs.Loader',
+    'django_jinja.loaders.AppLoader',
+    'django_jinja.loaders.FileSystemLoader',
+    # 'django.template.loaders.filesystem.Loader',
+    # 'django.template.loaders.app_directories.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,11 +95,14 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
+    'django_jinja',
     'south',
     'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
 )
+
+DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja2'
 
 if DEBUG:
     INSTALLED_APPS += (
