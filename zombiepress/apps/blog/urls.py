@@ -26,5 +26,11 @@ urlpatterns = patterns(
         r'^rss\.xml$',
         'rss',
         name='rss'
+    ),
+    # Search
+    url(
+        r'^search/$',
+        'search',
+        name='blog_search',
     )
 )

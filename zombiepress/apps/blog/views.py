@@ -67,3 +67,24 @@ def rss(request):
         context_instance=context,
         mimetype='text/xml'
     )
+
+
+def search(request):
+    page_number = 1
+    if 'page' in request.GET:
+        page_number = int(request.GET['page'])
+
+    search_query = request.POST['query']
+    paginator, page = blog_utils.get_paginator(
+        request, page_number, query=search_query
+    )
+
+    data = {
+        'section': section,
+        'page': page,
+        'page_number': page_number,
+        'paginator': paginator,
+        'search_query': search_query,
+    }
+    context = RequestContext(request, data)
+    return render_to_response('blog/search.jinja2', context_instance=context)
