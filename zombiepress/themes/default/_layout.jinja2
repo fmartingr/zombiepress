@@ -12,7 +12,7 @@
             <li><a href="{{ url('blog_list') }}">Blog</a></li>
             <li><a href="/projects">Projects</a></li>
             {% for language in languages %}
-            <li>{{ "{0}"|f(language) }}</li>
+            <li>{{ "{0}"|format(language) }}</li>
             {% endfor %}
         </ul>
     </nav>
