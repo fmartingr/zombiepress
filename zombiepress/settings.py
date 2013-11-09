@@ -61,11 +61,16 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # Common
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    # Reversion
+    'django.middleware.transaction.TransactionMiddleware',
+    'reversion.middleware.RevisionMiddleware',
+    # Security
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
@@ -99,6 +104,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django_jinja',
     'south',
+    'reversion',
     'zombiepress.apps.config',
     'zombiepress.apps.languages',
     'zombiepress.apps.blog',
