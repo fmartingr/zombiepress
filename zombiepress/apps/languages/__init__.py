@@ -14,6 +14,7 @@ if settings.MULTILANGUAGE:
     # Adding context processors
     settings.TEMPLATE_CONTEXT_PROCESSORS += (
         'zombiepress.apps.languages.context.languages_list',
+        'zombiepress.apps.languages.context.active_language',
     )
 
     # Setting languages

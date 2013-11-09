@@ -1,10 +1,15 @@
 from datetime import datetime
 
 from django.core.paginator import Paginator
+from django.utils import translation
+from django.conf import settings
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 from zombiepress.apps.blog.models import Entry
 from zombiepress.apps.config.models import Preference
+from zombiepress.apps.languages.models import Language
+from zombiepress.apps.languages.utils import get_active_language
 
 
 def get_posts(query=None, limit=None):
@@ -18,6 +23,10 @@ def get_posts(query=None, limit=None):
         )
 
     items = items.order_by('-date')
+
+    if settings.MULTILANGUAGE:
+        language = get_active_language()
+        items = items.filter(language=language)
 
     if limit:
         items = items[:limit]

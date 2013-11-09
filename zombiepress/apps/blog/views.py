@@ -2,11 +2,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.conf import settings
 from datetime import datetime
 
 from zombiepress.apps.config.models import Preference
 from zombiepress.apps.blog import utils as blog_utils
 from zombiepress.apps.blog.models import Entry
+from zombiepress.apps.languages.utils import get_active_language
 
 
 section = 'blog'
@@ -30,13 +32,19 @@ def list(request, page_number=1):
 
 def entry(request, year, month, day, slug):
     try:
+        filters = {
+            'slug': slug,
+            'date__year': int(year),
+            'date__month': int(month),
+            'date__day': int(day),
+        }
+
+        if settings.MULTILANGUAGE:
+            language = get_active_language()            
+            filters['language'] = get_active_language()
+
         item = Entry.objects.get(
-            slug=slug,
-            date__year=int(year),
-            date__month=int(month),
-            date__day=int(day),
-            #draft=False,
-            #date__lt=datetime.now()
+            **filters
         )
     except Entry.DoesNotExist:
         raise Http404
