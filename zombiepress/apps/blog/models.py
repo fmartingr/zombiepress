@@ -29,6 +29,7 @@ class Entry(models.Model):
         editable=False,
         related_name='author'
     )
+    tags = models.ManyToManyField('Tag')
 
     def __unicode__(self):
         return self.title
@@ -64,7 +65,7 @@ class Entry(models.Model):
 
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'status', 'preview_link')
+    list_display = ('title', 'date', 'status', 'tag_list', 'preview_link')
     list_display_links = ('title', )
 
     list_filter = ('date', )
@@ -84,6 +85,9 @@ class EntryAdmin(admin.ModelAdmin):
         )
     preview_link.allow_tags = True
 
+    def tag_list(self, obj):
+        return ", ".join([x.name for x in obj.tags.all()])
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.author = request.user
@@ -100,3 +104,21 @@ class EntryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Entry, EntryAdmin)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=128)
+    color = models.CharField(max_length=6, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        app_label = 'blog'
+        ordering = ['name']
+
+
+class TagAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Tag, TagAdmin)
