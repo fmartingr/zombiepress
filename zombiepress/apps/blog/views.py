@@ -13,9 +13,6 @@ from zombiepress.apps.languages.utils import get_active_language
 from zombiepress.apps.core.views import View
 
 
-section = 'blog'
-
-
 class ListView(View):
     section = 'blog'
     template = 'blog/list.jinja'

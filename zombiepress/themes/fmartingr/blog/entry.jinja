@@ -69,7 +69,7 @@
 {% block footer %}
     {{ super() }}
     {% if config.DISQUS_SHORTNAME %}
-        {% from '_macros.jinja2' import disqus with context %}
+        {% from '_macros.jinja' import disqus with context %}
         {{ disqus() }}
     {% endif %}
 {% endblock %}
