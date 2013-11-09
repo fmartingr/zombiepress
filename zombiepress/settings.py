@@ -54,6 +54,7 @@ SECRET_KEY = environ.get('SECRET_KEY', '1234567890')
 TEMPLATE_LOADERS = (
     'django_jinja.loaders.AppLoader',
     'django_jinja.loaders.FileSystemLoader',
+    'django.template.loaders.app_directories.Loader',
     # 'django.template.loaders.filesystem.Loader',
     # 'django.template.loaders.app_directories.Loader',
     # 'django.template.loaders.eggs.Loader',
@@ -92,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'grappelli',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
