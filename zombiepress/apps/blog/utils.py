@@ -1,5 +1,8 @@
-from django.core.paginator import Paginator
 from datetime import datetime
+
+from django.core.paginator import Paginator
+from django.db.models import Q
+
 from zombiepress.apps.blog.models import Entry
 from zombiepress.apps.config.models import Preference
 
@@ -9,8 +12,10 @@ def get_posts(query=None, limit=None):
         draft=False,
         date__lt=datetime.now()
     )
-    if query:
-        items = items.filter(title__contains=query)
+    if query and len(query) > 0:
+        items = items.filter(
+            Q(title__contains=query) | Q(content__contains=query)
+        )
 
     items = items.order_by('-date')
 
