@@ -1,36 +1,38 @@
 from django.conf.urls import patterns, url
 
+from .views import ListView, EntryView, SearchView, RSSView
+
 
 urlpatterns = patterns(
-    'zombiepress.apps.blog.views',
+    None,
     # Post list
     url(
         r'^$',
-        'list',
+        ListView.as_view(),
         name='blog_list'
     ),
     # Post list with page
     url(
         r'^page/(?P<page_number>\d+)/$',
-        'list',
+        ListView.as_view(),
         name='blog_list_page'
     ),
     # Single entry
     url(
         r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[\w\-]+)/$',
-        'entry',
+        EntryView.as_view(),
         name='blog_item'
     ),
     # RSS
     url(
         r'^rss\.xml$',
-        'rss',
+        RSSView.as_view(),
         name='rss'
     ),
     # Search
     url(
         r'^search/$',
-        'search',
+        SearchView.as_view(),
         name='blog_search',
     )
 )

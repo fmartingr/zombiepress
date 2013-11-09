@@ -110,8 +110,6 @@ INSTALLED_APPS = (
     'zombiepress.apps.blog',
 )
 
-DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja2'
-
 if DEBUG:
     INSTALLED_APPS += (
         'stampu',

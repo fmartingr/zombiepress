@@ -1,11 +1,13 @@
 from django.conf.urls import patterns, url
 
+from .views import HomepageView
+
 
 urlpatterns = patterns(
-    'zombiepress.apps.homepage.views',
+    None,
     url(
         r'^$',
-        'homepage',
+        HomepageView.as_view(),
         name='homepage'
     ),
 )

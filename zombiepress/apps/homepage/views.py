@@ -1,13 +1,13 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from zombiepress.apps.core.views import View
 
-section = 'homepage'
 
+class HomepageView(View):
+    template = 'homepage.jinja'
+    section = 'homepage'
 
-def homepage(request):
-    data = {
-        'section': section
-    }
-    context = RequestContext(request, data)
-    return render_to_response('homepage.jinja2', context_instance=context)
+    def get(self, request):
+        context = RequestContext(request, self.data)
+        return render_to_response(self.template, context_instance=context)
