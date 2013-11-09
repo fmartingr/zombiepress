@@ -1,0 +1,25 @@
+{% extends "_layout.jinja2" %}
+
+{% block page_title %}Blog{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" />
+<link rel="stylesheet" href="/static/css/syntax.min.css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.js"></script>
+{% endblock %}
+
+{% block menu %}
+    <header>
+        <a class="bright" href="{{ url('blog_list') }}">
+            Blog
+        </a>
+    </header>
+    <form action="{{ url('blog_search') }}" method="post">
+        {% csrf_token %}
+        <input type="text" class="search-field" name="query" placeholder="Search..."
+        {% if search_query %}
+        value="{{ search_query }}"
+        {% endif %}
+         />
+    </form>
+{% endblock %}

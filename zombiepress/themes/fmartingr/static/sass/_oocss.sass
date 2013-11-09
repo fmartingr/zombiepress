@@ -1,0 +1,92 @@
+.pull-left
+    float: left
+
+.pull-right
+    float: right
+
+.text-center
+    text-align: center
+
+.text-right
+    text-align: right
+
+.text-left
+    text-align: left
+ 
+.clearfix
+    *zoom: 1
+
+    &:before, &:after 
+        content: " "
+        display: table
+
+    &:after
+        clear: both
+
+.small
+    font-size: 50%
+    line-height: 50%
+
+.alt-font
+    font-family: $headers-font-family
+
+.hacker-icon
+    $size: 22px
+    display: inline-block
+    position: relative
+    height: $size
+    width: $size
+
+    -moz-transition: all 0.5s
+    -webkit-transition: all 0.5s
+    transition: all 0.5s
+
+    &:hover
+        vertical-align: top
+        width: 22px
+        &:before
+            content: "a"
+        div
+            display: none
+
+    div:nth-child(1)
+        position: absolute
+        left: $size/3
+        top: 0
+
+    div:nth-child(2)
+        position: absolute
+        left: ($size/3)*2
+        top: $size/3
+
+    div:nth-child(3)
+        position: absolute
+        left: ($size/3)*2
+        top: ($size/3)*2
+
+    div:nth-child(4)
+        position: absolute
+        left: $size/3
+        top: ($size/3)*2
+
+    div:nth-child(5)
+        position: absolute
+        left: 0
+        top: ($size/3)*2
+
+    div
+        background-color: #fff
+        width: $size/3
+        height: $size/3
+
+/* Mix-ins */
+@mixin rotate($degrees)
+    -webkit-transform: rotate(#{$degrees}deg)
+    -moz-transform: rotate(#{$degrees}deg)
+    -ms-transform: rotate(#{$degrees}deg)
+    -o-transform: rotate(#{$degrees}deg)
+    transform: rotate(#{$degrees}deg)
+
+    filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})"
+    zoom: 1

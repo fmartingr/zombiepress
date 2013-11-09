@@ -1,0 +1,197 @@
+html, body
+    color: $text-color
+    font-family: $font-family
+    font-size: $font-size
+    //font-weight: 400
+    margin: 0
+    min-height: 100%
+    text-align: justify
+
+body
+    padding-bottom: 40px
+
+h1, h2, h3, h4, h5, h6
+    font-family: $headers-font-family
+    font-weight: normal
+    text-shadow: 1px 1px 3px rgb(221, 221, 221)
+
+h1
+    font-size: 200%
+
+h2
+    font-size: 175%
+
+h3
+    font-size: 150%
+
+h4
+    font-size: 125%
+
+strong
+    color: $strong-text-color
+
+a
+    color: $anchor-text-color
+    text-decoration: none
+
+    &.dark
+        color: $text-color
+        //text-shadow: $text-color $text-shadow-properties
+
+    &.bright
+        color: $text-shadow-color
+
+    &:hover
+        border-bottom: 1px dotted
+
+figure
+    margin: 0
+    text-align: center
+
+    img
+        margin: 14px
+
+        &.pull-left
+            margin-left: 0
+
+        &.pull-right
+            margin-right: 0
+
+        &.padding
+            padding: 6px
+
+        &.shadow
+            box-shadow: $text-color $box-shadow-properties
+
+hr
+    background: none
+    border: 0
+    border-bottom: #aaa 1px dotted
+    width: 90%
+
+    &.big
+        border-bottom-width: 3px
+        margin: 30px auto
+
+
+.sidebar
+    background-color: $sidebar-bg
+    color: $sidebar-text-color
+    min-height: 100%
+    position: fixed
+    top: 0
+    width: $sidebar-width
+
+    &> button.menu
+        display: none
+
+    &> header
+        height: 220px
+
+        .logo
+            color: #fff
+            font-family: Verdana
+            font-size: 200%
+            font-weight: 800
+            padding: 20px
+
+    footer
+        bottom: 0
+        position: absolute
+        left: 0
+        padding: $footer-padding
+        width: $sidebar-width - ($footer-padding*2)
+
+        .zombiepress
+            font-family: $headers-font-family
+            font-size: 80%
+            text-shadow: #333 1px 1px 3px
+            a
+                color: #fff
+
+    .zone-menu
+
+    .buttons
+        @extend .text-center
+
+        header
+            font-size: 170%
+            margin-bottom: 10px
+
+        &.social
+            margin-bottom: 20px
+            button
+                width: 31%
+                font-size: 75%
+                font-family: helvetica, sans-serif
+
+        button
+            background-color: rgb(192, 192, 192)
+            border: none
+            cursor: pointer
+            font-size: 90%
+            margin-top: 5px
+            padding: 8px 0 8px 0
+            font-weight: bold
+            width: 90%
+
+            transition: 0.3s all
+
+            &.half
+                width: 38%
+
+            &.gap
+                &.pull-right
+                    margin-right: 5%
+
+                &.pull-left
+                    margin-left: 5%
+
+            &:hover
+                //margin-left: 10px
+
+            &.rss
+                background-color: $rss-color
+                color: $rss-text-color
+                
+                &:hover
+                    background-color: darken($rss-color, 12%)
+
+            &.email
+                background-color: $email-color
+                color: $email-text-color
+                
+                &:hover
+                    background-color: darken($email-color, 12%)
+
+            &.twitter
+                background-color: $twitter-color
+                color: $twitter-text-color
+                
+                &:hover
+                    background-color: darken($twitter-color, 12%)
+
+            &.github
+                background-color: $github-color
+                color: $github-text-color
+
+                &:hover
+                    background-color: darken($github-color, 12%)
+
+            &.blog
+                background-color: $blog-color
+                color: $blog-text-color
+
+                &:hover
+                    background-color: darken($blog-color, 12%)
+
+            &.projects
+                background-color: $projects-color
+                color: $projects-text-color
+
+                &:hover
+                    background-color: darken($projects-color, 12%)
+
+section.content
+    margin-left: $sidebar-width + $content-sidebar-gap
+    width: 60%

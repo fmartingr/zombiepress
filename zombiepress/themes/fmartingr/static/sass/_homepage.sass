@@ -1,0 +1,49 @@
+body
+    &.homepage
+        background-color: #eee
+        background-image: url('/static/images/homepage/bg.png')
+        background-attachment: fixed
+
+section.content
+    // http://www.sitepoint.com/css3-shuffled-paper/
+    .papers 
+        background: #fff
+        box-shadow: 0 0 10px rgba(0,0,0,0.3)
+        margin: 26px auto 0
+        //max-width: 700px
+        max-width: 600px
+        padding: 24px
+        position: relative
+        width: 80%
+
+    .papers:before, .papers:after 
+        content: ""
+        height: 98%
+        position: absolute
+        width: 100%
+        z-index: -1
+    
+    .papers:before 
+        background: #fafafa
+        box-shadow: 0 0 8px rgba(0,0,0,0.2)
+        left: -5px
+        top: 4px
+        @include rotate(-2.5)
+    
+    .papers:after 
+        background: #f6f6f6
+        box-shadow: 0 0 3px rgba(0,0,0,0.2)
+        right: -3px
+        top: 1px
+        @include rotate(1.4)
+
+    .picture
+        background-color: white
+        padding: 8px
+        padding-bottom: 30px
+        margin-left: 40px
+        margin-bottom: 12px
+        box-shadow: 0 0 3px rgba(0,0,0,0.2)
+        @include rotate(10)
+        margin-top: -10px
+        margin-right: -50px

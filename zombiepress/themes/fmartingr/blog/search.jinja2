@@ -1,0 +1,7 @@
+{% extends "blog/list.jinja2" %}
+
+{% block content %}
+    <h1 class="text-center">Searching for... <em>{{ search_query }}</em></h1>
+    <hr />
+    {{ super() }}
+{% endblock %}

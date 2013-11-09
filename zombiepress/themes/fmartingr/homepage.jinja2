@@ -1,0 +1,19 @@
+{% extends "_layout.jinja2" %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+    <div class="papers">
+        {% if config.SHOW_AVATAR_IN_HOME == "y" %}
+        <div class="picture pull-right hide-mobile">
+            <img src="/static/images/homepage/avatar.png" />
+        </div>
+        {% endif %}
+        <p>Hi there!</p>
+        <p>My name is Felipe Mart&iacute;n, and I'm a developer.</p>
+        <p>I've been playing with code for a while now, but I also enjoy geeking around with computers, algorithms and stuff; the less I know about it, the better. Learning new things everyday is <em>my</em> way of life.</p>
+        <p>Currently I'm a web developer, but I'm learning from more areas on my spare time, like pentesting or game development. I don't know what the future will bring to me, but I think that's the fun part.</p>
+        <p>If I'm not in front of my computer, you'll probably find me walking around the city with my headphones or having a beer with my friends.</p>
+        <p>You can access my blog and projects from the left. My contact details are around there too so feel free to drop me a line if you want!</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "blog/layout.jinja2" %}
+
+{% block page_title %}
+{{ super() }} | {{ item.title }}
+{% endblock %}
+
+{% block menu %}
+    <header>
+        <a class="bright" href="{{ url('blog_list') }}">
+        Blog
+        </a>
+    </header>
+    {% if item.status() == 'Published' %}
+        {% if page.number > 1 %}
+        <a href="{{ url('blog_list_page', page.number) }}">
+        {% else %}
+        <a href="{{ url('blog_list') }}">
+        {% endif %}
+        <button class="prev-page pull-left gap">
+            <i class="icon-double-angle-left"></i> Go back
+        </button>
+    </a>
+    {% endif %}
+    <a href="{{ url('rss') }}">
+        <button class="rss">
+            <i class="icon-rss"></i> RSS
+        </button>
+    </a>
+{% endblock %}
+
+{% block content %}
+    <article class="blog-entry {% if item.draft %}draft{% endif %}">
+        <h1 class="entry-title">
+            <a class="dark" href="#">{{ item.title }}</a>
+        </h1>
+
+        <div class="info text-left">
+            {#<i class="icon-user"></i> {{ item.author.first_name }}
+            &nbsp;#}
+            <i class="icon-calendar"></i> 
+            <time datetime="{{ item.date }}" 
+                pubdate="" 
+                data-updated="true">{{ item.date|dt('%B %e, %Y') }}</time>
+            {% if config.DISQUS_SHORTNAME %}
+            &nbsp;
+            <i class="icon-comment-alt"></i> <a href="{{ item.get_absolute_url() }}disqus_thread">0 Comments</a>
+            {% endif %}
+            {#
+            &nbsp;
+            <i class="icon-tag"></i> Tags
+            #}
+        </div>
+        <div class="content">{{ item.content|safe }}</div>
+        <div class="clearfix"></div>
+        {% if config.TWITTER_SHARE == "y" %}
+        <div class="share">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ item.title }} - {{ config.SITE_URL }}{{ item.get_absolute_url() }}" data-via="{{ config.TWITTER_VIA }}" data-size="large">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <div class="clearfix"></div>
+        {% endif %}
+        {% if config.DISQUS_SHORTNAME %}
+            <hr class="big" />
+            <div class="comments" id="disqus_thread"></div>
+        {% endif %}
+    </article>
+{% endblock %}
+
+{% block footer %}
+    {{ super() }}
+    {% if config.DISQUS_SHORTNAME %}
+        {% from '_macros.jinja2' import disqus with context %}
+        {{ disqus() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,131 @@
+body
+    &.blog
+        background-color: #fff
+        padding-bottom: 20px
+
+        section.content
+            hr:last-child
+                display: none
+
+article.blog-entry
+    text-align: left
+
+    &:after
+        clear: both
+
+    h2
+        margin: 16px 0 10px 0
+
+        a:hover
+            border: 0
+
+    h1
+        border-right: #555 6px solid
+        margin-bottom: 0.5em
+        font-size: 2.2em
+
+    &.draft
+        border: $warning-color 3px dashed
+        padding: 0 20px
+
+    .info
+
+    .content
+        line-height: 140%
+        padding-top: 15px
+
+        img
+            box-shadow: $sidebar-bg 0 0 4px
+            max-width: 100%
+
+            &.noshadow
+                box-shadow: none
+
+            &.float-left
+                float: left
+                margin-right: 3%
+
+        blockquote
+            border-left: 4px solid #dddddd
+            padding: 0 15px
+            color: #777777
+            > :first-child
+                margin-top: 0
+            > :last-child
+                margin-bottom: 0
+
+        code
+            display: inline-block
+            white-space: no-wrap
+            background: #fff
+            font-size: .8em
+            line-height: 1.5em
+            color: #555
+            border: 1px solid #ddd
+            -webkit-border-radius: 0.4em
+            -moz-border-radius: 0.4em
+            -ms-border-radius: 0.4em
+            -o-border-radius: 0.4em
+            border-radius: 0.4em
+            padding: 0 .3em
+            margin: -1px 0
+
+        hr
+            width: 50%
+
+        table
+            padding: 0
+            margin: 0 auto
+
+            tr
+                border-top: 1px solid #cccccc
+                background-color: white
+                margin: 0
+                padding: 0 
+
+                &:nth-child(2n) 
+                    background-color: #f8f8f8
+
+                th 
+                    font-weight: bold
+                    border: 1px solid #cccccc
+                    text-align: left
+                    margin: 0
+                    padding: 6px 13px 
+                td 
+                    border: 1px solid #cccccc
+                    text-align: left
+                    margin: 0
+                    padding: 6px 13px 
+
+                th :first-child, td :first-child 
+                    margin-top: 0
+
+                th :last-child, td :last-child 
+                    margin-bottom: 0 
+
+    a.readmore
+        background: $warning-color
+        border: none
+        color: white
+        font-family: helvetica, sans-serif
+        font-weight: bold
+        padding: 10px
+        font-size: 90%
+
+    .draft-warning
+        background-color: $warning-color
+        color: $warning-text-color
+        margin: 5px 0 5px 0
+        padding: 8px 0 8px 0
+
+    pre.prettyprint
+        line-height: 120%
+
+.search-field
+    border: none
+    font-size: 0.8em
+    font-weight: bold
+    height: 1.2em
+    padding: 2%
+    width: 86%

@@ -1,0 +1,93 @@
+{% extends "blog/layout.jinja2" %}
+
+{% block page_title %}
+{{ super() }}{% if page.number > 1 %} page {{ page_number }}{% endif %}
+{% endblock %}
+
+{% block menu %}
+    {{ super() }}
+    {% if page.has_next() %}
+    <a href="{{ url('blog_list_page', page.next_page_number()) }}">
+        <button class="prev-page pull-right gap half">
+            Older <i class="icon-double-angle-right"></i>
+        </button>
+    </a>
+    <a href="#">
+    {% endif %}
+
+    {% if page.has_previous() %}
+    {% if page.previous_page_number() == 1 %}
+    <a href="{{ url('blog_list') }}">
+    {% else %}
+    <a href="{{ url('blog_list_page', page.previous_page_number()) }}">
+    {% endif %}
+        <button class="prev-page pull-left gap half">
+            <i class="icon-double-angle-left"></i> Newer
+        </button>
+    </a>
+    {% endif %}
+
+    <a href="{{ url('rss') }}">
+        <button class="rss">
+            <i class="icon-rss"></i> RSS
+        </button>
+    </a>
+{% endblock %}
+
+{% block content %}
+    {% for item in page.object_list %}
+    <article class="blog-entry {% if item.draft %}draft{% endif %}">
+        <h1><a class="dark" href="{{ item.get_absolute_url() }}">{{ item.title }}</a></h1>
+        <div>
+            {#<i class="icon-user"></i> {{ item.author.first_name }}
+            &nbsp;#}
+            <i class="icon-calendar"></i> 
+            <time datetime="{{ item.date }}" 
+                pubdate="" 
+                data-updated="true">{{ item.date|dt('%B %e, %Y') }}</time>
+            {% if config.DISQUS_SHORTNAME %}
+            &nbsp;
+            <i class="icon-comment-alt"></i> <a href="{{ item.get_absolute_url() }}#disqus_thread">0 Comments</a>
+            {% endif %}
+        </div>
+        <div class="content">
+            {% if config.READMORE_TAG in item.content %}
+                {{ item.content|readmore|safe }}
+            {% else %}
+                {{ item.content|safe }}
+            {% endif %}
+        </div>
+        {% if config.READMORE_TAG in item.content %}
+        <a class="readmore pull-right" href="{{ item.get_absolute_url() }}#more">
+            Read more &raquo;
+        </a>
+        {% endif %}
+        <div class="clearfix"></div>
+    </article>
+    <hr class="big" />
+    {% else %}
+        <div class="text-center">No results found!</div>
+    {% endfor %}
+    {#
+    {% if paginator.num_pages > 1 %}
+    <div class="pagination pagination-centered">
+        <ul>
+            {% for p in range(1, paginator.num_pages+1) %}
+            <li {% if p == page_number %}class="active"{% endif %}>
+                <a href="{{ url('blog_list_page', p) }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    #}
+{% endblock %}
+
+{% block footer %}
+    {{ super() }}
+    {% if config.DISQUS_SHORTNAME %}
+        {% from '_macros.jinja2' import disqus with context %}
+        {{ disqus() }}
+    {% endif %}
+{% endblock %}
+

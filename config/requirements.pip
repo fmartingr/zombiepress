@@ -1,9 +1,0 @@
-Django==1.5.1
-dj-database-url==0.2.1
-South==0.8.1
-django-grappelli==2.4.5
-raven==3.3.7
-jingo==0.6.1
-pytz==2013b
-psycopg2==2.5
-gunicorn==0.17.4

@@ -77,7 +77,7 @@ class ThemeFinder(FileSystemFinder):
 
 
 def get_active_theme():
-    theme = os.environ.get('ZOMBIEPRESS_THEME', 'default')
+    theme = os.environ.get('ZOMBIEPRESS_THEME', 'fmartingr')
     return theme
 
 
