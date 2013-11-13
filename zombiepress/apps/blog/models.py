@@ -31,7 +31,7 @@ class Entry(models.Model):
         editable=False,
         related_name='author'
     )
-    tags = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag', null=True)
 
     def __unicode__(self):
         return self.title
