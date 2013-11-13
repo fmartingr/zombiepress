@@ -85,7 +85,7 @@ class SearchView(ListView):
         self.data['paginator'] = paginator
         self.data['search_query'] = search_query
 
-        context = RequestContext(request, data)
+        context = RequestContext(request, self.data)
         return render_to_response(self.template, context_instance=context)
 
 
