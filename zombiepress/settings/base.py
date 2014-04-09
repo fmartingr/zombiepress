@@ -88,6 +88,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
     "zombiepress.apps.config.context.preferences",
 )
 
@@ -99,7 +100,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-    'grappelli',
+    'suit',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     'django_jinja',

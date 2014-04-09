@@ -2,8 +2,8 @@ Django==1.6.2
 Jinja2==2.7.2
 South==0.8.4
 dj-database-url==0.3.0
-django-grappelli==2.5.2
 django-jinja==0.23.1
+django-suit==0.2.7
 django-reversion==1.8.0
 psycopg2==2.5.2
 pytz==2014.2
