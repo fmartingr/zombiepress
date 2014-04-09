@@ -3,7 +3,7 @@ from os import environ, path
 
 gettext = lambda s: s
 
-DEBUG = bool(environ.get('DEBUG', False))
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,7 +11,7 @@ ADMINS = (
 )
 
 #TOP_PATH = path.normpath(path.join(path.dirname(__file__), '../../'))
-BASE_PATH = path.normpath(path.dirname(__file__))
+BASE_PATH = path.normpath(path.join(path.dirname(__file__), '../'))
 
 MANAGERS = ADMINS
 
@@ -110,39 +110,12 @@ INSTALLED_APPS = (
     'zombiepress.apps.blog',
 )
 
-if DEBUG:
-    INSTALLED_APPS += (
-        'stampu',
-    )
-
 ##
 #   CONFIG
 ##
 
-# Production database
-if 'DATABASE_URL' in environ:
-    import dj_database_url
-    DATABASES['default'] = dj_database_url.config()
-else:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'ddbb.sqlite3',
-    }
-
-# Sentry
-if 'SENTRY_DSN' in environ:
-    SENTRY_CLIENT = 'raven.contrib.django.raven_compat.DjangoClient'
-    RAVEN_CONFIG = {
-        'dsn': environ.get('SENTRY_DSN'),
-    }
-    INSTALLED_APPS += (
-        'raven.contrib.django.raven_compat',
-    )
-
 GRAPPELLI_ADMIN_TITLE = 'Zombiepress'
 
-# Disqus
-DISQUS_SHORTNAME = 'fmartingr'
 
 LOGGING = {
     'version': 1,

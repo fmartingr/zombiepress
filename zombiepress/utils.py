@@ -5,7 +5,6 @@ from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import SortedDict
 from django.utils._os import safe_join
 from django.contrib.staticfiles import utils
-from django.contrib.staticfiles.storage import AppStaticStorage
 
 
 class ThemeFinder(FileSystemFinder):
