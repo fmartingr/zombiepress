@@ -10,8 +10,8 @@ class Migration(DataMigration):
 
     def forwards(self, orm):
         "Write your forwards methods here."
-        call_command("loaddata", "config_initial.json")
-        
+        call_command("loaddata", "config_initial")
+
     def backwards(self, orm):
         "Write your backwards methods here."
 
