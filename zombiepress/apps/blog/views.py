@@ -22,11 +22,11 @@ class ListView(View):
             page_number = int(request.GET['page'])
 
         paginator, page = blog_utils.get_paginator(request, page_number)
-        
+
         self.data['page'] = page
         self.data['page_number'] = page_number
         self.data['paginator'] = paginator
-        
+
         context = RequestContext(request, self.data)
         return render_to_response(self.template, context_instance=context)
 
@@ -46,8 +46,8 @@ class EntryView(View):
 
             # Filter also by language if needed
             if settings.MULTILANGUAGE:
-                language = get_active_language()            
-                filters['language'] = get_active_language()
+                language = get_active_language()
+                filters['language'] = language
 
             item = Entry.objects.get(**filters)
         except Entry.DoesNotExist:
